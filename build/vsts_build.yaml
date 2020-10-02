@@ -95,7 +95,6 @@ jobs:
     VsTargetMajorVersion: $[dependencies.Initialize_Build.outputs['updatebuildnumber.VsTargetMajorVersion']]
     SDKVersionForBuild: $[dependencies.Initialize_Build.outputs['getSDKVersionForBuild.SDKVersionForBuild']]
     LocalizedLanguageCount: "13"
-    BuildRTM: "false"
 
   pool:
     name: VSEng-MicroBuildVS2019
@@ -105,6 +104,8 @@ jobs:
 
   steps:
   - template: templates/Build_and_UnitTest.yml  
+    parameters:
+      BuildRTM: false
 
 - job: Build_and_UnitTest_RTM
   dependsOn: Initialize_Build
@@ -116,7 +117,6 @@ jobs:
     VsTargetMajorVersion: $[dependencies.Initialize_Build.outputs['updatebuildnumber.VsTargetMajorVersion']]
     SDKVersionForBuild: $[dependencies.Initialize_Build.outputs['getSDKVersionForBuild.SDKVersionForBuild']]
     LocalizedLanguageCount: "13"
-    BuildRTM: "true"
 
   pool:
     name: VSEng-MicroBuildVS2019
@@ -126,6 +126,8 @@ jobs:
 
   steps:
   - template: templates/Build_and_UnitTest.yml  
+    parameters:
+      BuildRTM: true
 
 - job: Functional_Tests_On_Windows
   dependsOn: Initialize_Build
