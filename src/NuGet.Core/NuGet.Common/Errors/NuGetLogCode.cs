@@ -688,6 +688,11 @@ namespace NuGet.Common
         NU5037 = 5037,
 
         /// <summary>
+        /// Empty icon extension error
+        /// </summary>
+        NU5044 = 5044,
+
+        /// <summary>
         /// Invalid icon extension error
         /// </summary>
         NU5045 = 5045,

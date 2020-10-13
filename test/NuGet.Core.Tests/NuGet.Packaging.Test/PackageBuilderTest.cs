@@ -2519,14 +2519,17 @@ Enabling license acceptance requires a license or a licenseUrl to be specified. 
         }
 
         [Theory]
-        [InlineData(".txt", "The 'icon' element 'icon.txt' has an invalid file extension. Valid options are .png, .jpg or .jpeg.")]
+        [InlineData(".txt", "The icon element 'icon.txt' has an invalid file extension. Valid options are .png, .jpg or .jpeg.")]
+        [InlineData(".zip", "The icon element 'icon.zip' has an invalid file extension. Valid options are .png, .jpg or .jpeg.")]
+        [InlineData(".jpeg.a", "The icon element 'icon.jpeg.a' has an invalid file extension. Valid options are .png, .jpg or .jpeg.")]
         [InlineData(".jpeg", null)]
+        [InlineData("x.y.z.jpeg", null)]
         [InlineData(".jpg", null)]
         [InlineData(".png", null)]
         [InlineData(".PnG", null)]
         [InlineData(".jPG", null)]
         [InlineData(".jpEG", null)]
-        [InlineData("", "The 'icon' element 'icon' has an invalid file extension. Valid options are .png, .jpg or .jpeg.")]
+        [InlineData("", "The icon element 'icon' file extension is empty. Valid options are .png, .jpg or .jpeg.")]
         public void Icon_IconInvalidExtension_ThrowsException(string fileExtension, string message)
         {
             var testDirBuilder = TestDirectoryBuilder.Create();

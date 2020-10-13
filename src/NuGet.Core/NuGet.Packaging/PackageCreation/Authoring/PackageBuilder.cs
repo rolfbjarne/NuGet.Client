@@ -10,13 +10,11 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
 using System.Xml.Linq;
 using NuGet.Common;
 using NuGet.Frameworks;
 using NuGet.Packaging.Core;
 using NuGet.Packaging.PackageCreation.Resources;
-using NuGet.Packaging.Rules;
 using NuGet.Versioning;
 
 namespace NuGet.Packaging
@@ -608,6 +606,14 @@ namespace NuGet.Packaging
                 var iconPathStripped = PathUtility.StripLeadingDirectorySeparators(iconPath);
 
                 var ext = Path.GetExtension(iconPath);
+
+                if (string.IsNullOrEmpty(ext))
+                {
+                    throw new PackagingException(
+                        NuGetLogCode.NU5044,
+                        string.Format(CultureInfo.CurrentCulture, NuGetResources.IconEmptyExtension, iconPath));
+                }
+
                 if (!string.IsNullOrEmpty(ext) &&
                         !ext.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) &&
                         !ext.Equals(".jpg", StringComparison.OrdinalIgnoreCase) &&

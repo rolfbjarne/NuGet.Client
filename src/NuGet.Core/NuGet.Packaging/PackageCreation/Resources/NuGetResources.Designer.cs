@@ -97,6 +97,15 @@ namespace NuGet.Packaging.PackageCreation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The icon element &apos;{0}&apos; file extension is empty. Valid options are .png, .jpg or .jpeg..
+        /// </summary>
+        internal static string IconEmptyExtension {
+            get {
+                return ResourceManager.GetString("IconEmptyExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The icon file is empty..
         /// </summary>
         internal static string IconErrorEmpty {
@@ -106,7 +115,7 @@ namespace NuGet.Packaging.PackageCreation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The &apos;icon&apos; element {0} has an invalid file extension. Valid options are .png, .jpg or .jpeg..
+        ///   Looks up a localized string similar to The icon element &apos;{0}&apos; has an invalid file extension. Valid options are .png, .jpg or .jpeg..
         /// </summary>
         internal static string IconInvalidExtension {
             get {
