@@ -1104,13 +1104,12 @@ namespace NuGet.PackageManagement.UI
             }
 
             var metadataProvider = CreatePackageMetadataProvider(context);
-            var installedPackages = await context.GetInstalledPackagesAsync();
+
+            (var installedPackages, var transitivePackages) = await context.GetAllPackagesAsync();
 
             if (filter == ItemFilter.All)
             {
                 // if we get here, recommendPackages == true
-                var transitivePackages = await context.GetTransitivePackagesAsync();
-
                 packageFeeds.mainFeed = new MultiSourcePackageFeed(
                     context.SourceRepositories,
                     uiLogger,
