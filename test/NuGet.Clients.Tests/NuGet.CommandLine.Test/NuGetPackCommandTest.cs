@@ -5998,6 +5998,7 @@ $@"<package xmlns='http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd'>
         {
             NuspecBuilder nuspecBuilder = NuspecBuilder.Create();
             TestDirectoryBuilder testDirBuilder = TestDirectoryBuilder.Create();
+            var rng = new Random();
 
             var iconFile = $"icon{fileExtension}";
 
@@ -6006,7 +6007,8 @@ $@"<package xmlns='http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd'>
                 .WithIcon(iconFile);
 
             testDirBuilder
-                .WithNuspec(nuspecBuilder);
+                .WithNuspec(nuspecBuilder)
+                .WithFile(iconFile, rng.Next(1, 1024));
 
             if (logCode == null)
             {
