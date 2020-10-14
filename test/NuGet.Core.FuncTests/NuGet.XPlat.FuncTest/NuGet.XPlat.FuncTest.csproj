@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Build.Runtime" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Build.Tasks" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
   </ItemGroup>
 
@@ -35,14 +34,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup Condition=" '$(IsCore)' == 'true' ">
-    <PackageReference Include="Microsoft.Net.Compilers.netcore" />
-  </ItemGroup>
-  <Target Name="CopyTargets" AfterTargets="AfterBuild">
-    <Copy Condition=" '$(IsCore)' == 'true' " SourceFiles="$(MSBuildProjectDirectory)\$(OutputPath)\Microsoft.CSharp.Core.targets" DestinationFolder="$(MSBuildProjectDirectory)\$(OutputPath)\Roslyn\" />
-    <Copy Condition="'$(TargetFramework)' == '$(NETFXTargetFramework)'" SourceFiles="$(MSBuildProjectDirectory)\$(OutputPath)\Microsoft.CSharp.Core.targets" DestinationFolder="$(MSBuildProjectDirectory)\$(OutputPath)\..\..\$(VisualStudioVersion)\Bin\Roslyn\" />
-  </Target>
-  
+
   <Import Project="$(BuildCommonDirectory)common.targets" />
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 </Project>
