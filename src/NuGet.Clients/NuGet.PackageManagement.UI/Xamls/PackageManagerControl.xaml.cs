@@ -1110,6 +1110,7 @@ namespace NuGet.PackageManagement.UI
             if (filter == ItemFilter.All)
             {
                 // if we get here, recommendPackages == true
+                var targetFrameworks = await context.GetTargetFrameworksAsync();
                 packageFeeds.mainFeed = new MultiSourcePackageFeed(
                     context.SourceRepositories,
                     uiLogger,
@@ -1118,6 +1119,7 @@ namespace NuGet.PackageManagement.UI
                     context.SourceRepositories.First(),
                     installedPackages,
                     transitivePackages,
+                    targetFrameworks,
                     metadataProvider,
                     logger);
                 return packageFeeds;
