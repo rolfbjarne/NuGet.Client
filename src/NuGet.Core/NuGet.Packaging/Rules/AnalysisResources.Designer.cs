@@ -160,6 +160,15 @@ namespace NuGet.Packaging.Rules {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The icon element &apos;{0}&apos; has a file extension not suported by nuget.org. Valid options are .png, .jpg or .jpeg..
+        /// </summary>
+        public static string IconInvalidExtension {
+            get {
+                return ResourceManager.GetString("IconInvalidExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The &apos;PackageIconUrl&apos;/&apos;iconUrl&apos; element is deprecated. Consider using the &apos;PackageIcon&apos;/&apos;icon&apos; element instead. Learn more at https://aka.ms/deprecateIconUrl.
         /// </summary>
         public static string IconUrlDeprecationWarning {

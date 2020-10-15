@@ -688,16 +688,6 @@ namespace NuGet.Common
         NU5037 = 5037,
 
         /// <summary>
-        /// Empty icon extension error
-        /// </summary>
-        NU5044 = 5044,
-
-        /// <summary>
-        /// Invalid icon extension error
-        /// </summary>
-        NU5045 = 5045,
-
-        /// <summary>
         /// Error_Manifest_IconCannotOpenFile
         /// </summary>
         NU5046 = 5046,
@@ -876,5 +866,10 @@ namespace NuGet.Common
         /// Undefined package warning
         /// </summary>
         NU5500 = 5500,
+
+        /// <summary>
+        /// Invalid icon extension warning
+        /// </summary>
+        NU5501 = 5501,
     }
 }

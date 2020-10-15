@@ -156,6 +156,10 @@
   <data name="FilePathTooLongWarning" xml:space="preserve">
     <value>The file '{0}' path, name, or both are too long. Your package might not work without long file path support. Please shorten the file path or file name.</value>
   </data>
+  <data name="IconInvalidExtension" xml:space="preserve">
+    <value>The icon element '{0}' has a file extension not suported by nuget.org. Valid options are .png, .jpg or .jpeg.</value>
+    <comment>0 - Icon entry in the nuspec</comment>
+  </data>
   <data name="IconUrlDeprecationWarning" xml:space="preserve">
     <value>The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl</value>
   </data>

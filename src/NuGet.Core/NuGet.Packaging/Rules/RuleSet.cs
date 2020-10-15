@@ -30,6 +30,7 @@ namespace NuGet.Packaging.Rules
                 new UpholdBuildConventionRule(),
                 new ReferencesInNuspecMatchRefAssetsRule(),
                 new IconUrlDeprecationWarning(AnalysisResources.IconUrlDeprecationWarning),
+                new IconFileExtensionWarning(AnalysisResources.IconInvalidExtension),
             }
         );
 

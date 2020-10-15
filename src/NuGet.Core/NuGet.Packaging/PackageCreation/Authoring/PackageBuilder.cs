@@ -605,25 +605,6 @@ namespace NuGet.Packaging
                 // Validate entry
                 var iconPathStripped = PathUtility.StripLeadingDirectorySeparators(iconPath);
 
-                var ext = Path.GetExtension(iconPath);
-
-                if (string.IsNullOrEmpty(ext))
-                {
-                    throw new PackagingException(
-                        NuGetLogCode.NU5044,
-                        string.Format(CultureInfo.CurrentCulture, NuGetResources.IconEmptyExtension, iconPath));
-                }
-
-                if (!string.IsNullOrEmpty(ext) &&
-                        !ext.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) &&
-                        !ext.Equals(".jpg", StringComparison.OrdinalIgnoreCase) &&
-                        !ext.Equals(".png", StringComparison.OrdinalIgnoreCase))
-                {
-                    throw new PackagingException(
-                        NuGetLogCode.NU5045,
-                        string.Format(CultureInfo.CurrentCulture, NuGetResources.IconInvalidExtension, iconPath));
-                }
-
                 var iconFileList = files.Where(f =>
                         iconPathStripped.Equals(
                             PathUtility.StripLeadingDirectorySeparators(f.Path),
@@ -655,6 +636,10 @@ namespace NuGet.Packaging
                         {
                             throw new PackagingException(Common.NuGetLogCode.NU5047, NuGetResources.IconErrorEmpty);
                         }
+
+                        // validate headers
+
+
                     }
                 }
                 catch (FileNotFoundException e)

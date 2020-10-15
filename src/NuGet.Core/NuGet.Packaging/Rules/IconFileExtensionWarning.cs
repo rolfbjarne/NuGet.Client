@@ -2,17 +2,18 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
 using NuGet.Common;
 
 namespace NuGet.Packaging.Rules
 {
-    public class IconUrlDeprecationWarning : IPackageRule
+    public class IconFileExtensionWarning : IPackageRule
     {
         public string MessageFormat { get; }
 
-        public IconUrlDeprecationWarning(string messageFormat)
+        public IconFileExtensionWarning(string messageFormat)
         {
             MessageFormat = messageFormat ?? throw new ArgumentNullException(nameof(messageFormat));
         }
@@ -26,14 +27,18 @@ namespace NuGet.Packaging.Rules
 
             var nuspecReader = builder.NuspecReader;
             var icon = nuspecReader.GetIcon();
-            var iconUrl = nuspecReader.GetIconUrl();
+            var ext = Path.GetExtension(icon);
 
-            if (icon == null && !string.IsNullOrEmpty(iconUrl))
+            if (string.IsNullOrEmpty(ext) || !string.IsNullOrEmpty(ext) &&
+                    !ext.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) &&
+                    !ext.Equals(".jpg", StringComparison.OrdinalIgnoreCase) &&
+                    !ext.Equals(".png", StringComparison.OrdinalIgnoreCase))
             {
                 yield return PackagingLogMessage.CreateWarning(
-                    string.Format(CultureInfo.CurrentCulture, MessageFormat),
-                    NuGetLogCode.NU5048);
+                    string.Format(CultureInfo.CurrentCulture, MessageFormat, icon),
+                    NuGetLogCode.NU5501);
             }
+
         }
     }
 }
