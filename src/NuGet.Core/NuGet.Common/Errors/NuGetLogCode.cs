@@ -870,6 +870,6 @@ namespace NuGet.Common
         /// <summary>
         /// Invalid icon extension warning
         /// </summary>
-        NU5501 = 5501,
+        NU5502 = 5502,
     }
 }

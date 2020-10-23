@@ -29,16 +29,29 @@ namespace NuGet.Packaging.Rules
             var icon = nuspecReader.GetIcon();
             var ext = Path.GetExtension(icon);
 
-            if (string.IsNullOrEmpty(ext) || !string.IsNullOrEmpty(ext) &&
-                    !ext.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) &&
-                    !ext.Equals(".jpg", StringComparison.OrdinalIgnoreCase) &&
-                    !ext.Equals(".png", StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrEmpty(ext) && IsKnownExtension(ext) && !IsSupportedExtension(ext))
             {
                 yield return PackagingLogMessage.CreateWarning(
                     string.Format(CultureInfo.CurrentCulture, MessageFormat, icon),
-                    NuGetLogCode.NU5501);
+                    NuGetLogCode.NU5502);
             }
+        }
 
+        public static bool IsKnownExtension(string ext)
+        {
+            return IsSupportedExtension(ext)
+                || ext.Equals(".bmp", StringComparison.OrdinalIgnoreCase) // BmpBitmapDecoder
+                || ext.Equals(".tiff", StringComparison.OrdinalIgnoreCase) // TiffBitmapDecoder
+                || ext.Equals(".gif", StringComparison.OrdinalIgnoreCase) // GifBitmapDecoder
+                || ext.Equals(".ico", StringComparison.OrdinalIgnoreCase) // IconBitmapDecoder Only works on BMP-based .ico files
+                || ext.Equals(".wmp", StringComparison.OrdinalIgnoreCase); // WmpBitmapDecoder
+        }
+
+        public static bool IsSupportedExtension(string ext)
+        {
+            return ext.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) // JpegBitmapDecoder
+                || ext.Equals(".jpg", StringComparison.OrdinalIgnoreCase) // JpegBitmapDecoder
+                || ext.Equals(".png", StringComparison.OrdinalIgnoreCase); // PngBitmapDecoder
         }
     }
 }
