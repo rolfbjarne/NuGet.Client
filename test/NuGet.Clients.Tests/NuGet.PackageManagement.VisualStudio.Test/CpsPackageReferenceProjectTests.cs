@@ -3009,7 +3009,6 @@ namespace NuGet.PackageManagement.VisualStudio.Test
             }
         }
 
-        private TestCpsPackageReferenceProject CreateTestCpsPackageReferenceProject(string projectName, string projectFullPath, ProjectSystemCache projectSystemCache, TestProjectSystemServices projectServices = null)
         [Fact]
         public async Task GetTransitivePackagesAsync_WithAssetsFile_ReturnsTransitivePackageReferences()
         {
@@ -3022,7 +3021,7 @@ namespace NuGet.PackageManagement.VisualStudio.Test
                 // Project
                 var projectCache = new ProjectSystemCache();
                 IVsProjectAdapter projectAdapter = (new Mock<IVsProjectAdapter>()).Object;
-                var project = CreateNetCorePackageReferenceProject(projectName, projectFullPath, projectCache);
+                var project = CreateCpsPackageReferenceProject(projectName, projectFullPath, projectCache);
 
                 var projectNames = GetTestProjectNames(projectFullPath, projectName);
                 var packageSpec = GetPackageSpec(projectName, projectFullPath, "[2.0.0, )");
@@ -3085,7 +3084,7 @@ namespace NuGet.PackageManagement.VisualStudio.Test
                 // Project
                 var projectCache = new ProjectSystemCache();
                 IVsProjectAdapter projectAdapter = (new Mock<IVsProjectAdapter>()).Object;
-                var project = CreateNetCorePackageReferenceProject(projectName, projectFullPath, projectCache);
+                var project = CreateCpsPackageReferenceProject(projectName, projectFullPath, projectCache);
 
                 var projectNames = GetTestProjectNames(projectFullPath, projectName);
                 var packageSpec = GetPackageSpec(projectName, projectFullPath, "[2.0.0, )");
@@ -3158,7 +3157,7 @@ namespace NuGet.PackageManagement.VisualStudio.Test
                 // Project
                 var projectCache = new ProjectSystemCache();
                 IVsProjectAdapter projectAdapter = (new Mock<IVsProjectAdapter>()).Object;
-                var project = CreateNetCorePackageReferenceProject(projectName, projectFullPath, projectCache);
+                var project = CreateCpsPackageReferenceProject(projectName, projectFullPath, projectCache);
 
                 var projectNames = GetTestProjectNames(projectFullPath, projectName);
                 var packageSpec = GetPackageSpec(projectName, projectFullPath, "[2.0.0, )");
@@ -3201,7 +3200,7 @@ namespace NuGet.PackageManagement.VisualStudio.Test
             }
         }
 
-        private TestNetCorePackageReferenceProject CreateTestNetCorePackageReferenceProject(string projectName, string projectFullPath, ProjectSystemCache projectSystemCache, TestProjectSystemServices projectServices = null)
+        private TestCpsPackageReferenceProject CreateTestCpsPackageReferenceProject(string projectName, string projectFullPath, ProjectSystemCache projectSystemCache, TestProjectSystemServices projectServices = null)
         {
             projectServices = projectServices == null ? new TestProjectSystemServices() : projectServices;
 
